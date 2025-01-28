@@ -7,6 +7,8 @@ use App\Http\Requests\SignInRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller {
@@ -47,6 +49,16 @@ class UserController extends Controller {
             'message' => 'User signed in successfully',
             'user' => $user,
             'token' => $user->createToken('API TOKEN')->plainTextToken
+        ], 200);
+    }
+
+    public function signOut(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User signed out successfully',
         ], 200);
     }
 }

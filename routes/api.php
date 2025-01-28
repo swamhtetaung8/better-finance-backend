@@ -8,3 +8,10 @@ use Illuminate\Support\Facades\Route;
  */
 Route::post('/sign-up', [UserController::class, 'storeUser']);
 Route::post('/sign-in', [UserController::class, 'signIn']);
+
+/**
+ * Protected routes
+ */
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/sign-out', [UserController::class, 'signOut']);
+});
