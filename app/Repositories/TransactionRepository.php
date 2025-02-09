@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Transaction;
+use Carbon\Carbon;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,6 +35,7 @@ class TransactionRepository
   public function createTransaction(array $data): Transaction
   {
     $data['user_id'] = Auth::id();
+    $data['transaction_date'] = Carbon::parse($data['transaction_date'])->toDateTimeString();
     return Transaction::create($data);
   }
 
