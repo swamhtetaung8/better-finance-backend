@@ -26,6 +26,7 @@ class StoreTransactionRequest extends FormRequest
             'amount' => ['required', 'numeric', 'min:0'],
             'transaction_date' => ['required', 'date'],
             'description' => ['nullable', 'string'],
+            'category' => ['required', 'string', 'in:salary,freelance,investment_returns,food_and_drinks,transportation,utility,shopping,medical'],
         ];
     }
 
