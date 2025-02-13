@@ -15,7 +15,7 @@ class TransactionRepository
    */
   public function getAllTransacitons(): LengthAwarePaginator
   {
-    return Transaction::where('user_id', Auth::id())->paginate();
+    return Transaction::where('user_id', Auth::id())->orderBy('id', 'desc')->paginate();
   }
 
     /**
